@@ -19,6 +19,7 @@
       padding: 15px;
       text-align: center;
       top: 0;
+      z-index: 1000;
     }
 
     nav a {
@@ -31,36 +32,16 @@
     header {
       background: linear-gradient(135deg, #00c853, #00bfa5);
       color: white;
-      padding: 120px 20px 80px;
+      padding: 120px 20px;
       text-align: center;
-    }
-
-    header img {
-      width: 120px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
-
-    header h1 {
-      font-size: 38px;
-    }
-
-    header button {
-      padding: 10px 20px;
-      border: none;
-      background: white;
-      color: #00bfa5;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 10px;
     }
 
     section {
       padding: 60px 20px;
       text-align: center;
       opacity: 0;
-      transform: translateY(30px);
-      transition: 0.6s;
+      transform: translateY(40px);
+      transition: 0.8s;
     }
 
     section.show {
@@ -78,6 +59,29 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
+    .progress {
+      width: 70%;
+      margin: 10px auto;
+      background: #ddd;
+      border-radius: 20px;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: #00c853;
+      border-radius: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #00bfa5;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
     footer {
       background: #333;
       color: white;
@@ -93,43 +97,38 @@
   <a href="#about">About</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
+  <a href="#learning">Learning</a>
   <a href="#contact">Contact</a>
 </nav>
 
 <header id="home">
-  <!-- Add your photo -->
-  <img src="https://via.placeholder.com/120" alt="Profile">
-
-  <h1>Hello, I'm Monisha 👋</h1>
-  <p>CSE Student | Future Developer</p>
-
-  <!-- Buttons -->
-  <br>
-  <a href="resume.pdf" download>
-    <button>Download Resume</button>
-  </a>
-
-  <a href="https://github.com/" target="_blank">
-    <button>GitHub</button>
-  </a>
-
-  <a href="https://linkedin.com/" target="_blank">
-    <button>LinkedIn</button>
-  </a>
+  <h1>Hello, I am Monisha C Gowda 👋</h1>
+  <p>Computer Science Engineering Student | Future Developer</p>
 </header>
 
 <section id="about">
   <h2>About Me</h2>
-  <p>I am a second-year Computer Science Engineering student passionate about programming and development.</p>
+  <p>
+    I am a second-year Computer Science Engineering student. 
+    I am passionate about programming, web development, and problem-solving.
+  </p>
 </section>
 
 <section id="skills">
   <h2>Skills</h2>
-  <div class="card">C Programming</div>
-  <div class="card">Java</div>
-  <div class="card">Python</div>
-  <div class="card">SQL</div>
-  <div class="card">HTML & CSS</div>
+
+  <p>C Programming (70%)</p>
+  <div class="progress"><div class="progress-bar" style="width:70%"></div></div>
+
+  <p>Java (60%)</p>
+  <div class="progress"><div class="progress-bar" style="width:60%"></div></div>
+
+  <p>Python (50%)</p>
+  <div class="progress"><div class="progress-bar" style="width:50%"></div></div>
+
+  <p>HTML & CSS (65%)</p>
+  <div class="progress"><div class="progress-bar" style="width:65%"></div></div>
+
 </section>
 
 <section id="projects">
@@ -137,27 +136,43 @@
   <div class="card">Stock Market Analysis</div>
   <div class="card">Student Database System</div>
   <div class="card">Python Calculator</div>
+  <div class="card">To-Do List Website</div>
+</section>
+
+<section id="learning">
+  <h2>What I'm Learning</h2>
+  <p>
+    Data Structures & Algorithms<br>
+    Web Development (HTML, CSS, JavaScript)<br>
+    SQL & Database Management
+  </p>
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
+  <h2>Let's Connect!</h2>
   <p>Email: monishacgowda549@gmail.com</p>
   <p>Phone: 9148583742</p>
   <p>Location: Karnataka, India</p>
+
+  <button>Send Message</button>
+</section>
+
+<section>
+  <h2>My Goal</h2>
+  <p>To become a skilled software developer and work on real-world projects.</p>
 </section>
 
 <footer>
   <p>© 2026 Monisha Portfolio</p>
 </footer>
 
-<!-- Animation Script -->
 <script>
   const sections = document.querySelectorAll("section");
 
   window.addEventListener("scroll", () => {
     sections.forEach(sec => {
       const top = sec.getBoundingClientRect().top;
-      if(top < window.innerHeight - 100){
+      if (top < window.innerHeight - 100) {
         sec.classList.add("show");
       }
     });
@@ -166,3 +181,10 @@
 
 </body>
 </html>
+     
+
+    
+      
+
+ 
+
