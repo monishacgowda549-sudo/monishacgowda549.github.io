@@ -19,13 +19,12 @@
       background: #020617;
       padding: 15px;
       text-align: center;
-      top: 0;
       z-index: 1000;
     }
 
     nav a {
       color: #38bdf8;
-      margin: 15px;
+      margin: 12px;
       text-decoration: none;
       font-weight: bold;
     }
@@ -36,19 +35,14 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #020617, #0f172a);
-      text-align: center;
     }
 
-    /* GLOW TEXT */
     .glow {
-      font-size: 40px;
-      font-weight: bold;
+      font-size: 45px;
       color: #38bdf8;
-      text-shadow: 0 0 10px #38bdf8, 0 0 20px #38bdf8;
+      text-shadow: 0 0 15px #38bdf8, 0 0 30px #38bdf8;
     }
 
-    /* TYPING TEXT */
     .typing {
       font-size: 20px;
       margin-top: 10px;
@@ -56,51 +50,69 @@
       white-space: nowrap;
       overflow: hidden;
       width: 0;
-      animation: typing 4s steps(30, end) forwards, blink 0.7s infinite;
+      animation: typing 4s steps(30) forwards, blink 0.7s infinite;
     }
 
     @keyframes typing {
-      from { width: 0 }
-      to { width: 320px }
+      to { width: 340px; }
     }
 
     @keyframes blink {
-      50% { border-color: transparent }
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      background: #38bdf8;
-      color: black;
-      border-radius: 5px;
-      cursor: pointer;
+      50% { border-color: transparent; }
     }
 
     section {
-      padding: 60px 20px;
+      padding: 80px 20px;
       text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .card {
       background: #1e293b;
       margin: 15px;
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 12px;
       display: inline-block;
-      width: 250px;
+      width: 260px;
       transition: 0.3s;
     }
 
     .card:hover {
-      transform: scale(1.05);
+      transform: translateY(-10px) scale(1.05);
+    }
+
+    .progress {
+      width: 60%;
+      margin: 10px auto;
+      background: #333;
+      border-radius: 20px;
+    }
+
+    .bar {
+      height: 10px;
+      background: #38bdf8;
+      border-radius: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      background: #38bdf8;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
     footer {
       background: #020617;
-      padding: 15px;
-      text-align: center;
+      padding: 20px;
       color: #aaa;
     }
   </style>
@@ -113,30 +125,50 @@
   <a href="#about">About</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
+  <a href="#learning">Learning</a>
   <a href="#contact">Contact</a>
 </nav>
 
 <header id="home">
   <div class="glow">Hello, I am Monisha C Gowda 👋</div>
-  <div class="typing">CSE Student | Future Developer</div>
+  <div class="typing" id="typing"></div>
 
-  <button onclick="document.getElementById('contact').scrollIntoView()">
-    Contact Me
-  </button>
+  <button onclick="document.getElementById('contact').scrollIntoView()">Contact Me</button>
 </header>
 
 <section id="about">
   <h2>About Me</h2>
-  <p>I am a second-year Computer Science Engineering student passionate about programming and development.</p>
+
+  <p>
+    I am a second-year Computer Science Engineering student at 
+    <b>Saptagiri NPS University</b>.
+  </p>
+
+  <p>
+    I am passionate about programming, web development, and problem-solving.
+    I continuously learn new technologies and build projects to improve my skills.
+  </p>
+
+  <p>
+    🎓 Current CGPA: <b>8.2</b>
+  </p>
 </section>
 
 <section id="skills">
   <h2>Skills</h2>
-  <div class="card">C Programming</div>
-  <div class="card">Java</div>
-  <div class="card">Python</div>
-  <div class="card">SQL</div>
-  <div class="card">HTML & CSS</div>
+
+  <p>C Programming</p>
+  <div class="progress"><div class="bar" style="width:70%"></div></div>
+
+  <p>Java</p>
+  <div class="progress"><div class="bar" style="width:60%"></div></div>
+
+  <p>Python</p>
+  <div class="progress"><div class="bar" style="width:50%"></div></div>
+
+  <p>HTML & CSS</p>
+  <div class="progress"><div class="bar" style="width:65%"></div></div>
+
 </section>
 
 <section id="projects">
@@ -144,17 +176,62 @@
   <div class="card">Stock Market Analysis</div>
   <div class="card">Student Database System</div>
   <div class="card">Python Calculator</div>
+  <div class="card">To-Do List App</div>
+</section>
+
+<section id="learning">
+  <h2>What I'm Learning</h2>
+  <p>
+    Data Structures & Algorithms <br>
+    Web Development <br>
+    SQL & Database Management
+  </p>
 </section>
 
 <section id="contact">
   <h2>Contact</h2>
   <p>Email: monishacgowda549@gmail.com</p>
   <p>Phone: 9148583742</p>
+  <p>Location: Karnataka, India</p>
 </section>
 
 <footer>
   <p>© 2026 Monisha Portfolio</p>
 </footer>
+
+<script>
+const texts = ["CSE Student", "Web Developer", "Future Software Engineer"];
+let i = 0, j = 0, current = "", isDeleting = false;
+
+function type() {
+  if (i < texts.length) {
+    if (!isDeleting && j <= texts[i].length) {
+      current = texts[i].substring(0, j++);
+    } else if (isDeleting && j >= 0) {
+      current = texts[i].substring(0, j--);
+    }
+
+    document.getElementById("typing").innerText = current;
+
+    if (j == texts[i].length) isDeleting = true;
+    if (j == 0) {
+      isDeleting = false;
+      i = (i + 1) % texts.length;
+    }
+  }
+  setTimeout(type, isDeleting ? 50 : 100);
+}
+type();
+
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
+      sec.classList.add("show");
+    }
+  });
+});
+</script>
 
 </body>
 </html>
